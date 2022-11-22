@@ -23,9 +23,12 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+  const expenseChangeHandler=(data)=>{
+      console.log(data)
+  }
   return (
     <div>
-      <NewExpenses/>
+      <NewExpenses onExpenseChange={expenseChangeHandler}/>
       <Expenses items={expenses} />
     </div>
   );
