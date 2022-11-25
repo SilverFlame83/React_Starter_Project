@@ -4,6 +4,7 @@ import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
+import ExpenseList from "./ExpenseList";
 
 function Expenses(props) {
   const [filterDate, setFilterDate] = useState("2020");
@@ -16,23 +17,12 @@ function Expenses(props) {
     (el) => el.date.getFullYear().toString() === filterDate
   );
 
-  let filteredMsg = <p>No expenses</p>;
-  if(filteredExpense.length > 0){
-    filteredMsg =  filteredExpense.map((expenses) => (
-      <ExpenseItem
-        key={expenses.id}
-        title={expenses.title}
-        amount={expenses.amount}
-        date={expenses.date}
-      />
-    ))
-  }
 
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter onFilteredExpense={filterHandler} />
-        {filteredMsg}
+        <ExpenseList items = {filteredExpense}/>
         {/* {filteredExpense.length === 0 && <p>No expenses</p>}
         {filteredExpense.length> 0 &&
           filteredExpense.map((expenses) => (
